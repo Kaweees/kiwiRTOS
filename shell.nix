@@ -5,6 +5,7 @@ let
   isDarwin = pkgs.stdenv.isDarwin;
 in pkgs.mkShell {
   buildInputs = with pkgs; [
+    neofetch # System information tool
     just # Just runner
     zig # Zig compiler
     xorriso # ISO image creator
