@@ -9,7 +9,8 @@
 #
 
 image() {
-  local arch=$(uname -m)
+  local arch
+  arch=$(uname -m)
   local kernel_arch="$3"
   local kernel_file="$1"
   local image_file="$2"
@@ -20,7 +21,7 @@ image() {
   # Create a folder whose structure mirrors that of the desired disk image
   mkdir -p "${boot_files_dir}"
   sudo mkdir -p "${boot_files_dir}/boot/grub"
-  sudo cp -r ./src/arch/${kernel_arch}/grub.cfg "${boot_files_dir}/boot/grub/"
+  sudo cp -r ./src/arch/"${kernel_arch}"/grub.cfg "${boot_files_dir}/boot/grub/"
   sudo cp -r "${kernel_file}" "${boot_files_dir}/boot/kiwirtos.bin"
   # Create a zeroed out disk image file
   dd if=/dev/zero of="${image_file}" bs=512 count=32768
