@@ -44,7 +44,7 @@ check:
 # Format the project
 format:
   zig fmt .
-  nixfmt .
+  @find . -name "*.nix" -type f -exec nixfmt {} \;
 
 # Generate documentation
 docs arch='x86_64':

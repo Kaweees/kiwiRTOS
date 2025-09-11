@@ -64,7 +64,8 @@ To get a local copy of the project up and running on your machine, follow these 
 2. Install the project dependencies
 
    ```sh
-   nix-shell
+   nix-shell --max-jobs $(nproc) # Linux / Windows (WSL)
+   nix-shell --max-jobs $(sysctl -n hw.ncpu) # macOS
    ```
 
 3. Run the project
