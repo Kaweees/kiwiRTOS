@@ -1,15 +1,22 @@
-{ pkgs ? import <nixpkgs> { } }:
+{
+  pkgs ? import <nixpkgs> { },
+}:
 
 let
   # Check if we're on Darwin (macOS)
   isDarwin = pkgs.stdenv.isDarwin;
 
   # GRUB cross-compilation: target a 32-bit (i386-pc) environment.
-  grubPkgs = import <nixpkgs> { crossSystem = { config = "i686-linux"; }; };
+  grubPkgs = import <nixpkgs> {
+    crossSystem = {
+      config = "i686-linux";
+    };
+  };
 
   # Native GRUB for the host system (only needed if not Darwin)
   nativeGrub = if isDarwin then null else pkgs.grub2;
-in pkgs.mkShell {
+in
+pkgs.mkShell {
   buildInputs = [
     pkgs.neofetch # System information tool
     pkgs.just # Just runner
