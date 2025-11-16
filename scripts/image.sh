@@ -53,6 +53,7 @@ image() {
       --no-floppy \
       --modules="normal part_msdos ext2 multiboot" \
       --target=i386-pc \
+      --directory="${GRUB_DIR}/i386-pc" \
       "${LOOP_DEVICE1}"
   else
     # Install GRUB in the MBR from another architecture
@@ -67,7 +68,7 @@ image() {
   # Copy files to the image
   sudo cp -r "${boot_files_dir}"/* "${mount_point}"
   # Unmount the partition
-  sudo umount "${mount_point}"
+  sudo umount -l "${mount_point}"
   # Remove the block devices
   sudo losetup -d "${LOOP_DEVICE1}"
   sudo losetup -d "${LOOP_DEVICE2}"

@@ -17,16 +17,15 @@ let
   nativeGrub = if isDarwin then null else pkgs.grub2;
 in
 pkgs.mkShell {
-  buildInputs = [
-    pkgs.neofetch # System information tool
-    pkgs.just # Just runner
-    pkgs.zig # Zig compiler
-    pkgs.xorriso # ISO image creator
-    pkgs.nasm # NASM assembler
-    pkgs.cdrtools # CD-ROM tools
-    pkgs.qemu # For testing the OS
-    pkgs.nixfmt # Nix formatter
-    pkgs.parted # Partitioning tool
+  buildInputs = with pkgs; [
+    zig_0_14 # Zig compiler 0.14.1
+    nixfmt # Nix formatter
+    just # Just runner
+    xorriso # ISO image creator
+    nasm # NASM assembler
+    cdrtools # CD-ROM tools
+    qemu # For testing the OS
+    parted # Partitioning tool
 
     # Include GRUB packages
     nativeGrub # Native GRUB (needed for installation on Linux host)
@@ -38,8 +37,8 @@ pkgs.mkShell {
     # Set GRUB_DIR to the cross-compiled GRUB installation containing i386-pc modules
     export GRUB_DIR="${grubPkgs.grub2}/lib/grub"
     # Optionally, display paths for clarity (can be removed if noisy)
-    # echo "Native GRUB available at: ${nativeGrub}/bin/grub-install"
-    # echo "Cross GRUB available at: ${grubPkgs.grub2}/bin/grub-install"
-    # echo "GRUB cross-compilation environment loaded from: $GRUB_DIR"
+    echo "Native GRUB available at: ${nativeGrub}/bin/grub-install"
+    echo "Cross GRUB available at: ${grubPkgs.grub2}/bin/grub-install"
+    echo "GRUB cross-compilation environment loaded from: $GRUB_DIR"
   '';
 }
