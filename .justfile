@@ -60,4 +60,3 @@ docs arch='x86_64':
 # Build the project for WASM
 wasm arch='x86_64':
   @echo "Building WASM..."
-  @cd vendors/qemu-wasm && docker buildx create --use --name qemu-builder || true && docker buildx build --platform linux/$(uname -m) -t buildqemu - < Dockerfile

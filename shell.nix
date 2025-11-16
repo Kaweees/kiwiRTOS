@@ -8,6 +8,22 @@ let
     crossSystem = {
       config = "i686-linux";
     };
+    overlays = [
+      (final: prev: {
+        linux-pam = prev.linux-pam.overrideAttrs (oldAttrs: {
+          outputs = builtins.filter (x: x != "man") (
+            oldAttrs.outputs or [
+              "out"
+              "dev"
+              "bin"
+              "man"
+              "doc"
+              "scripts"
+            ]
+          );
+        });
+      })
+    ];
   };
 
   # Native GRUB for the host system (only needed if not Darwin)
