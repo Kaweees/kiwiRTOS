@@ -41,7 +41,6 @@ clean:
   @echo "Cleaning..."
   @rm -rf .zig-cache zig-out .img qemu.log
 
-
 # Run code quality tools
 check:
   @echo "Checking..."

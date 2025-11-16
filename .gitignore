@@ -1,9 +1,9 @@
 *
 
 !.github/
-!.github/**/
+!.github/**
 !assets/
-!assets/**/
+!assets/**
 !.editorconfig
 !.gitattributes
 !.gitignore
@@ -13,14 +13,23 @@
 !LICENSE
 !README.md
 
-!src/
-!src/**/
 !examples/
+!examples/**
+!scripts/
+!scripts/**
+!src/
+!src/**
+!vendors/
+!vendors/**
 
 !*.md
+!*.mdc
 !*.svg
 !*.png
 !*.nix
 !*.lock
+!*.yaml
+!*.yml
+!*.sh
 !*.zig
 !*.zon
