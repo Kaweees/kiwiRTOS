@@ -3,9 +3,6 @@
 }:
 
 let
-  # Check if we're on Darwin (macOS)
-  isDarwin = pkgs.stdenv.isDarwin;
-
   # GRUB cross-compilation: target a 32-bit (i386-pc) environment.
   grubPkgs = import <nixpkgs> {
     crossSystem = {
@@ -14,7 +11,7 @@ let
   };
 
   # Native GRUB for the host system (only needed if not Darwin)
-  nativeGrub = if isDarwin then null else pkgs.grub2;
+  nativeGrub = if pkgs.stdenv.isDarwin then null else pkgs.grub2;
 in
 pkgs.mkShell {
   buildInputs = with pkgs; [
